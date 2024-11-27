@@ -1,0 +1,11 @@
+# User files
+*.user
+
+# IDE files
+.vs/
+
+# Build files
+bin/
+obj/
+build/
+Properties/
