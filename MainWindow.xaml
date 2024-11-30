@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:healthy_reminders"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Healthy Reminders" Height="450" Width="800" Closed="Window_Closed">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="20/20/20"/>
+            <Label x:Name="LabelTime" Content="Time for next event: TIME"/>
+            <Button x:Name="BtnEyeCarePlay" Content="Play" Click="BtnEyeCarePlay_Click"/>
+            <Button x:Name="BtnEyeCareStop" Content="Stop" Click="BtnEyeCareStop_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
