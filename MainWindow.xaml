@@ -5,18 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:healthy_reminders"
         mc:Ignorable="d"
-        Title="Healthy Reminders" Height="450" Width="800" Closed="Window_Closed">
+        Title="Healthy Reminders" Height="450" Width="800" Closed="Window_Closed" FontFamily="Segoe UI Historic" FontSize="16">
+
+    <Window.Resources>
+        <Style x:Key="HoverableTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF196BAA"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF0A253A"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <!-- Main section -->
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="20/20/20"/>
-            <Label x:Name="LabelTime" Content="Time for next event: TIME"/>
-            <Button x:Name="BtnEyeCarePlay" Content="Play" Click="BtnEyeCarePlay_Click"/>
-            <Button x:Name="BtnEyeCareStop" Content="Stop" Click="BtnEyeCareStop_Click"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#FFDBEBFF">
+            <TextBlock Grid.Column="0" FontSize="25" FontFamily="Segoe UI Black" VerticalAlignment="Center" HorizontalAlignment="Center">Healthy Reminders</TextBlock>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Eye care" HorizontalAlignment="Center" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <Image Source="/Assets/eye-care.png" Height="100" Width="100" Margin="0,5,0,15"/>                
+                <Label x:Name="LabelTime" Content="Timer not started yet" HorizontalAlignment="Center" Margin="0,0,0,5" FontSize="16"/>                
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="BtnEyeCarePlay" Content="Start" Grid.Column="0" Click="BtnEyeCarePlay_Click" Width="80"/>
+                    <Button x:Name="BtnEyeCareStop" Content="Stop" Grid.Column="2" Click="BtnEyeCareStop_Click" Width="80"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <!-- Bottom tools -->
+        <Grid Grid.Row="2" Margin="30,0,30,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="textBlock" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource HoverableTextBlockStyle}" FontSize="16" Cursor="Hand">Settings</TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource HoverableTextBlockStyle}" FontSize="16" Cursor="Hand">Help</TextBlock>
+        </Grid>
     </Grid>
 </Window>

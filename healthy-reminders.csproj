@@ -12,7 +12,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\eye-care.png" />
+    <None Remove="Assets\physical-activity.png" />
+    <None Remove="Assets\posture-health.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\eye-care.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\physical-activity.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\posture-health.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
