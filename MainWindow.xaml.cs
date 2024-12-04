@@ -19,12 +19,12 @@ namespace healthy_reminders
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly EventTimer _eventTimerEyeCare;
+        public Dictionary<string, EventTimer> EventTimers = new Dictionary<string, EventTimer>();
 
         private NotificationManager _notificationManager;
-        internal NotificationManager NotificationManager { 
-            get => _notificationManager; 
-            set => _notificationManager = value; 
+        internal NotificationManager NotificationManager {
+            get => _notificationManager;
+            set => _notificationManager = value;
         }
 
         public MainWindow()
@@ -33,14 +33,38 @@ namespace healthy_reminders
 
             NotificationManager = new NotificationManager(this);
 
-            // Eye care timer
-            _eventTimerEyeCare = new EventTimer(
-                this, 
-                TimeSpan.FromMinutes(20), 
-                new HealthEvent("Eye care"), 
-                LabelTime
+            // Declaration of timers based on user settings
+            EventTimers.Add(
+                "EyeCare",
+                new EventTimer(
+                    this,
+                    TimeSpan.FromSeconds(Properties.Settings.Default.TimerDelayEyeCareInSeconds),
+                    TimeSpan.FromSeconds(Properties.Settings.Default.TimerEventEyeCareInSeconds),
+                    new HealthEvent("Eye care"),
+                    LabelTime            
+                )
             );
-            _eventTimerEyeCare.Stop();
+
+            // Update timers' labels
+            foreach (var (_, eventTimer) in EventTimers)
+            {
+                eventTimer.Update();
+            }
+
+            // If `TimersOnStart` setting is true, start all timers
+            if (Properties.Settings.Default.TimersOnStart) {
+                foreach (var (_, eventTimer) in EventTimers)
+                {
+                    eventTimer.Start();
+                }
+            }
+
+            // If `MinimizedOnStart` setting is true, minimize the app window
+            if (Properties.Settings.Default.MinimizedOnStart)
+            {
+                WindowState = WindowState.Minimized;
+                OnStateChanged(EventArgs.Empty);
+            }
         }
 
 
@@ -51,12 +75,23 @@ namespace healthy_reminders
 
         private void BtnEyeCarePlay_Click(object sender, RoutedEventArgs e)
         {
-            _eventTimerEyeCare.Start();
+            EventTimers["EyeCare"].Start();
         }
 
         private void BtnEyeCareStop_Click(object sender, RoutedEventArgs e)
         {
-            _eventTimerEyeCare.Stop();
+            EventTimers["EyeCare"].Stop();
+        }
+
+
+
+        // Setting button clicked
+        private void btnSettings_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow(this);
+            settingsWindow.Owner = this;
+            this.Hide();
+            settingsWindow.Show();
         }
 
 

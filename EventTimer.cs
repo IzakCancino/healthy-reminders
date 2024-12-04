@@ -14,6 +14,7 @@ namespace healthy_reminders
     public class EventTimer
     {
         public HealthEvent HealthEvent;
+        public bool OnEventMode = false;
 
         // Window and elements variables
         private readonly MainWindow _mainWindow;
@@ -21,10 +22,11 @@ namespace healthy_reminders
 
         // Timer and time variables
         public DispatcherTimer DispatcherTimer;
-        public TimeSpan LapTime;
+        public TimeSpan DelayTime;
+        public TimeSpan EventTime;
         public TimeSpan CountdownTime;
 
-        public EventTimer(MainWindow window, TimeSpan lapTime, HealthEvent healthEvent, System.Windows.Controls.Label labelCountdown)
+        public EventTimer(MainWindow window, TimeSpan delayTime, TimeSpan eventTime, HealthEvent healthEvent, System.Windows.Controls.Label labelCountdown)
         {
             HealthEvent = healthEvent;
 
@@ -37,8 +39,9 @@ namespace healthy_reminders
             DispatcherTimer.Interval = TimeSpan.FromSeconds(1);
 
             // Time variables
-            LapTime = lapTime;
-            CountdownTime = lapTime;
+            DelayTime = delayTime;
+            CountdownTime = delayTime;
+            EventTime = eventTime;
         }
 
         // In every tick of the timer
@@ -46,25 +49,45 @@ namespace healthy_reminders
         {
             // Reduce one second in the timer and show it
             CountdownTime = CountdownTime.Subtract(TimeSpan.FromSeconds(1));
-            LabelCountdown.Content = CountdownTime.ToString(@"mm\:ss");
+            Update();
 
             // Once the countdown reaches 00:00
             if (CountdownTime.Ticks <= 0)
             {
                 Stop();
-                Random rand = new Random();
-                _mainWindow.NotificationManager.ShowNotification(
-                    HealthEvent.Name, 
-                    HealthEvent.Alerts[rand.Next(HealthEvent.Alerts.Length)]
-                );
+                
+                if (OnEventMode) {
+                    OnEventMode = false;
+
+                    _mainWindow.NotificationManager.ShowNotification(
+                        HealthEvent.Name,
+                        "Event ended!"
+                    );
+
+                    Reset();
+                } 
+                else
+                {
+                    OnEventMode = true;
+
+                    Random rand = new Random();
+                    _mainWindow.NotificationManager.ShowNotification(
+                        HealthEvent.Name,
+                        HealthEvent.Alerts[rand.Next(HealthEvent.Alerts.Length)]
+                    );
+
+                    CountdownTime = EventTime;
+                    Update();
+                    DispatcherTimer.Start();
+                }                
             }
         }
 
         // Reset timer
         public void Reset()
         {
-            CountdownTime = LapTime;
-            LabelCountdown.Content = CountdownTime.ToString(@"mm\:ss");
+            CountdownTime = DelayTime;
+            Update();
         }
 
         // Start timer
@@ -72,6 +95,12 @@ namespace healthy_reminders
         {
             Reset();
             DispatcherTimer.Start();
+        }
+
+        // Update timer
+        public void Update()
+        {
+            LabelCountdown.Content = CountdownTime.ToString(@"mm\:ss");
         }
 
         // Stop timer
