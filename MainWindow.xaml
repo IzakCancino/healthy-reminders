@@ -18,7 +18,7 @@
         </Style>
     </Window.Resources>
 
-    <!-- Main section -->
+    <!-- Main grid -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -26,18 +26,21 @@
             <RowDefinition Height="45"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <!-- Header section -->
         <Grid Background="#FFDBEBFF">
             <TextBlock Grid.Column="0" FontSize="25" FontFamily="Segoe UI Black" VerticalAlignment="Center" HorizontalAlignment="Center">Healthy Reminders</TextBlock>
         </Grid>
-        
-        <Grid Grid.Row="1">
+
+        <!-- Main section -->
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
             </Grid.ColumnDefinitions>
-            
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <!-- "Eye care" section -->
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Eye care" HorizontalAlignment="Center" FontSize="20" FontFamily="Segoe UI Semibold"/>
                 <Image Source="/Assets/eye-care.png" Height="100" Width="100" Margin="0,5,0,15"/>
                 <Label x:Name="LabelEyeCareTime" Content="Timer not started yet" HorizontalAlignment="Center" FontSize="16"/>
@@ -56,9 +59,51 @@
                 
                 <Button x:Name="BtnEyeCareSkip" Content="Skip" Click="BtnEyeCareSkip_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
             </StackPanel>
+
+            <!-- "Posture health" section -->
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Posture health" HorizontalAlignment="Center" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <Image Source="/Assets/posture-health.png" Height="100" Width="100" Margin="0,5,0,15"/>
+                <Label x:Name="LabelPostureHealthTime" Content="Timer not started yet" HorizontalAlignment="Center" FontSize="16"/>
+                <Label x:Name="LabelPostureHealthStatus" Content="(Waiting to start event delay)" FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF3A3A3A"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="BtnPostureHealthPlay" Content="Start" Grid.Column="0" Click="BtnPostureHealthPlay_Click" Width="80"/>
+                    <Button x:Name="BtnPostureHealthStop" Content="Stop" Grid.Column="2" Click="BtnPostureHealthStop_Click" Width="80" IsEnabled="False"/>
+                </Grid>
+
+                <Button x:Name="BtnPostureHealthSkip" Content="Skip" Click="BtnPostureHealthSkip_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
+            </StackPanel>
+
+            <!-- "Physical activity" section -->
+            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Physical activity" HorizontalAlignment="Center" FontSize="20" FontFamily="Segoe UI Semibold"/>
+                <Image Source="/Assets/physical-activity.png" Height="100" Width="100" Margin="0,5,0,15"/>
+                <Label x:Name="LabelPhysicalActivityTime" Content="Timer not started yet" HorizontalAlignment="Center" FontSize="16"/>
+                <Label x:Name="LabelPhysicalActivityStatus" Content="(Waiting to start event delay)" FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF3A3A3A"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="BtnPhysicalActivityPlay" Content="Start" Grid.Column="0" Click="BtnPhysicalActivityPlay_Click" Width="80"/>
+                    <Button x:Name="BtnPhysicalActivityStop" Content="Stop" Grid.Column="2" Click="BtnPhysicalActivityStop_Click" Width="80" IsEnabled="False"/>
+                </Grid>
+
+                <Button x:Name="BtnPhysicalActivitySkip" Content="Skip" Click="BtnPhysicalActivitySkip_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
+            </StackPanel>
         </Grid>
 
-        <!-- Bottom tools -->
+        <!-- Footer section -->
         <Grid Grid.Row="2" Margin="30,0,30,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
