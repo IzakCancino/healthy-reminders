@@ -102,7 +102,7 @@ namespace healthy_reminders
 
 
         // Setting button clicked
-        private void btnSettings_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void BtnSettings_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow(this);
             settingsWindow.Owner = this;

@@ -65,8 +65,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="btnSettings" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource HoverableTextBlockStyle}" FontSize="16" Cursor="Hand" VerticalAlignment="Top" MouseLeftButtonUp="btnSettings_MouseLeftButtonUp">Settings</TextBlock>
-            <TextBlock x:Name="btnHelp" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource HoverableTextBlockStyle}" FontSize="16" Cursor="Hand" VerticalAlignment="Top">Help</TextBlock>
+            <TextBlock x:Name="BtnSettings" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource HoverableTextBlockStyle}" FontSize="16" Cursor="Hand" VerticalAlignment="Top" MouseLeftButtonUp="BtnSettings_MouseLeftButtonUp">Settings</TextBlock>
+            <TextBlock x:Name="BtnHelp" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource HoverableTextBlockStyle}" FontSize="16" Cursor="Hand" VerticalAlignment="Top">Help</TextBlock>
         </Grid>
     </Grid>
 </Window>
