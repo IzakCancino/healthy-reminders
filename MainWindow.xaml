@@ -39,8 +39,9 @@
             
             <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Eye care" HorizontalAlignment="Center" FontSize="20" FontFamily="Segoe UI Semibold"/>
-                <Image Source="/Assets/eye-care.png" Height="100" Width="100" Margin="0,5,0,15"/>                
-                <Label x:Name="LabelTime" Content="Timer not started yet" HorizontalAlignment="Center" Margin="0,0,0,5" FontSize="16"/>                
+                <Image Source="/Assets/eye-care.png" Height="100" Width="100" Margin="0,5,0,15"/>
+                <Label x:Name="LabelEyeCareTime" Content="Timer not started yet" HorizontalAlignment="Center" FontSize="16"/>
+                <Label x:Name="LabelEyeCareStatus" Content="(Waiting to start event delay)" FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF3A3A3A"/>
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -50,8 +51,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Button x:Name="BtnEyeCarePlay" Content="Start" Grid.Column="0" Click="BtnEyeCarePlay_Click" Width="80"/>
-                    <Button x:Name="BtnEyeCareStop" Content="Stop" Grid.Column="2" Click="BtnEyeCareStop_Click" Width="80"/>
+                    <Button x:Name="BtnEyeCareStop" Content="Stop" Grid.Column="2" Click="BtnEyeCareStop_Click" Width="80" IsEnabled="False"/>
                 </Grid>
+                
+                <Button x:Name="BtnEyeCareSkip" Content="Skip" Click="BtnEyeCareSkip_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
             </StackPanel>
         </Grid>
 

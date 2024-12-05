@@ -41,14 +41,24 @@ namespace healthy_reminders
                     TimeSpan.FromSeconds(Properties.Settings.Default.TimerDelayEyeCareInSeconds),
                     TimeSpan.FromSeconds(Properties.Settings.Default.TimerEventEyeCareInSeconds),
                     new HealthEvent("Eye care"),
-                    LabelTime            
+                    new Dictionary<string, System.Windows.Controls.Label>()
+                    {
+                        {"Countdown", LabelEyeCareTime},
+                        {"Status", LabelEyeCareStatus}
+                    },
+                    new Dictionary<string, System.Windows.Controls.Button>()
+                    {
+                        {"Play", BtnEyeCarePlay},
+                        {"Stop", BtnEyeCareStop},
+                        {"Skip", BtnEyeCareSkip}
+                    }
                 )
             );
 
             // Update timers' labels
             foreach (var (_, eventTimer) in EventTimers)
             {
-                eventTimer.Update();
+                eventTimer.UpdateCountdown();
             }
 
             // If `TimersOnStart` setting is true, start all timers
@@ -82,6 +92,12 @@ namespace healthy_reminders
         {
             EventTimers["EyeCare"].Stop();
         }
+
+        private void BtnEyeCareSkip_Click(object sender, RoutedEventArgs e)
+        {
+            EventTimers["EyeCare"].Skip();
+        }
+
 
 
 
