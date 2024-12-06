@@ -14,5 +14,17 @@
     <Setting Name="TimerEventEyeCareInSeconds" Type="System.Double" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="TimerDelayPostureHealthInSeconds" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1800</Value>
+    </Setting>
+    <Setting Name="TimerEventPostureHealthInSeconds" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TimerDelayPhysicalActivityInSeconds" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">3600</Value>
+    </Setting>
+    <Setting Name="TimerEventPhysicalActivityInSeconds" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

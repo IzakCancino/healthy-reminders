@@ -70,5 +70,53 @@ namespace healthy_reminders.Properties {
                 this["TimerEventEyeCareInSeconds"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1800")]
+        public double TimerDelayPostureHealthInSeconds {
+            get {
+                return ((double)(this["TimerDelayPostureHealthInSeconds"]));
+            }
+            set {
+                this["TimerDelayPostureHealthInSeconds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double TimerEventPostureHealthInSeconds {
+            get {
+                return ((double)(this["TimerEventPostureHealthInSeconds"]));
+            }
+            set {
+                this["TimerEventPostureHealthInSeconds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3600")]
+        public double TimerDelayPhysicalActivityInSeconds {
+            get {
+                return ((double)(this["TimerDelayPhysicalActivityInSeconds"]));
+            }
+            set {
+                this["TimerDelayPhysicalActivityInSeconds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        public double TimerEventPhysicalActivityInSeconds {
+            get {
+                return ((double)(this["TimerEventPhysicalActivityInSeconds"]));
+            }
+            set {
+                this["TimerEventPhysicalActivityInSeconds"] = value;
+            }
+        }
     }
 }

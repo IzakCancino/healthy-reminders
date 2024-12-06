@@ -72,27 +72,31 @@ namespace healthy_reminders
                     OnEventMode = false;
                     UpdateControls();
 
+                    ControlLabels["Countdown"].FontWeight = FontWeights.Normal;
+                    ControlLabels["Countdown"].Foreground = System.Windows.Media.Brushes.Black;
+
                     _mainWindow.NotificationManager.ShowNotification(
                         HealthEvent.Name,
                         "Event ended!"
                     );
-
-                    ControlLabels["Countdown"].FontWeight = FontWeights.Normal;
-                    ControlLabels["Countdown"].Foreground = System.Windows.Media.Brushes.Black;
                 }
                 else
                 {
-                    OnEventMode = true;
-                    UpdateControls();
+                    // Not event timer available for health event "PostureHealth"
+                    if (HealthEvent.HasTimerEvent)
+                    {
+                        OnEventMode = true;
+                        UpdateControls();
+
+                        ControlLabels["Countdown"].FontWeight = FontWeights.Bold;
+                        ControlLabels["Countdown"].Foreground = System.Windows.Media.Brushes.DarkGreen;
+                    }
 
                     Random rand = new Random();
                     _mainWindow.NotificationManager.ShowNotification(
                         HealthEvent.Name,
                         HealthEvent.Alerts[rand.Next(HealthEvent.Alerts.Length)]
                     );
-
-                    ControlLabels["Countdown"].FontWeight = FontWeights.Bold;
-                    ControlLabels["Countdown"].Foreground = System.Windows.Media.Brushes.DarkGreen;
                 }
 
                 Reset();
@@ -122,7 +126,9 @@ namespace healthy_reminders
         // Update countdown timer
         public void UpdateCountdown()
         {
-            ControlLabels["Countdown"].Content = CountdownTime.ToString(@"mm\:ss");
+            ControlLabels["Countdown"].Content = CountdownTime.ToString(
+                CountdownTime.Hours >= 1 ? @"hh\:mm\:ss" : @"mm\:ss"
+            );
         }
 
         // Stop timer

@@ -54,6 +54,46 @@ namespace healthy_reminders
                     }
                 )
             );
+            EventTimers.Add(
+                "PostureHealth",
+                new EventTimer(
+                    this,
+                    TimeSpan.FromSeconds(Properties.Settings.Default.TimerDelayPostureHealthInSeconds), 
+                    TimeSpan.FromSeconds(Properties.Settings.Default.TimerEventPostureHealthInSeconds),
+                    new HealthEvent("Posture health"),
+                    new Dictionary<string, System.Windows.Controls.Label>()
+                    {
+                        {"Countdown", LabelPostureHealthTime},
+                        {"Status", LabelPostureHealthStatus}
+                    },
+                    new Dictionary<string, System.Windows.Controls.Button>()
+                    {
+                        {"Play", BtnPostureHealthPlay},
+                        {"Stop", BtnPostureHealthStop},
+                        {"Skip", new System.Windows.Controls.Button()}
+                    }
+                )
+            ); 
+            EventTimers.Add(
+                "PhysicalActivity",
+                new EventTimer(
+                    this,
+                    TimeSpan.FromSeconds(Properties.Settings.Default.TimerDelayPhysicalActivityInSeconds),
+                    TimeSpan.FromSeconds(Properties.Settings.Default.TimerEventPhysicalActivityInSeconds),
+                    new HealthEvent("Physical activity"),
+                    new Dictionary<string, System.Windows.Controls.Label>()
+                    {
+                        {"Countdown", LabelPhysicalActivityTime},
+                        {"Status", LabelPhysicalActivityStatus}
+                    },
+                    new Dictionary<string, System.Windows.Controls.Button>()
+                    {
+                        {"Play", BtnPhysicalActivityPlay},
+                        {"Stop", BtnPhysicalActivityStop},
+                        {"Skip", BtnPhysicalActivitySkip}
+                    }
+                )
+            );
 
             // Update timers' labels
             foreach (var (_, eventTimer) in EventTimers)
@@ -98,6 +138,42 @@ namespace healthy_reminders
             EventTimers["EyeCare"].Skip();
         }
 
+
+
+        /*
+         Control buttons for "Posture Health" timer
+         */
+
+        private void BtnPostureHealthPlay_Click(object sender, RoutedEventArgs e)
+        {
+            EventTimers["PostureHealth"].Start();
+        }
+
+        private void BtnPostureHealthStop_Click(object sender, RoutedEventArgs e)
+        {
+            EventTimers["PostureHealth"].Stop();
+        }
+
+
+
+        /*
+         Control buttons for "Physical activity" timer
+         */
+
+        private void BtnPhysicalActivityPlay_Click(object sender, RoutedEventArgs e)
+        {
+            EventTimers["PhysicalActivity"].Start();
+        }
+
+        private void BtnPhysicalActivityStop_Click(object sender, RoutedEventArgs e)
+        {
+            EventTimers["PhysicalActivity"].Stop();
+        }
+
+        private void BtnPhysicalActivitySkip_Click(object sender, RoutedEventArgs e)
+        {
+            EventTimers["PhysicalActivity"].Skip();
+        }
 
 
 
