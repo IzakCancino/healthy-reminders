@@ -100,6 +100,11 @@ namespace healthy_reminders
                 }
 
                 Reset();
+
+                if (!HealthEvent.HasTimerEvent)
+                {
+                    Start();
+                }
             }
         }
 
