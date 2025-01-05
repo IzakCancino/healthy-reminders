@@ -65,7 +65,7 @@ namespace healthy_reminders
             // Once the countdown reaches 00:00
             if (CountdownTime.Ticks <= 0)
             {
-                Stop(false);
+                Reset(false);
 
                 if (OnEventMode)
                 {
@@ -108,42 +108,27 @@ namespace healthy_reminders
             }
         }
 
-        // Reset timer
-        public void Reset()
-        {
-            CountdownTime = OnEventMode ? EventTime : DelayTime;
-            UpdateCountdown();
-        }
-
         // Start timer
         public void Start()
         {
             OnWaiting = false;
             UpdateControls();
 
-            Reset();
+            UpdateCountdownType();
             DispatcherTimer.Start();
 
             ControlLabels["Countdown"].FontWeight = FontWeights.Normal;
             ControlLabels["Countdown"].Foreground = System.Windows.Media.Brushes.Gray;
-        }
+        }        
 
-        // Update countdown timer
-        public void UpdateCountdown()
-        {
-            ControlLabels["Countdown"].Content = CountdownTime.ToString(
-                CountdownTime.Hours >= 1 ? @"hh\:mm\:ss" : @"mm\:ss"
-            );
-        }
-
-        // Stop timer
-        public void Stop(bool resetEventMode = true)
+        // Reset timer
+        public void Reset(bool resetEventMode = true)
         {
             OnWaiting = true;
             OnEventMode = (resetEventMode ? false : OnEventMode);
             UpdateControls();
 
-            Reset();
+            UpdateCountdownType();
             DispatcherTimer.Stop();
 
             ControlLabels["Countdown"].FontWeight = FontWeights.Normal;
@@ -153,7 +138,7 @@ namespace healthy_reminders
         // Skip timer of event itself
         public void Skip()
         {
-            // Stop current timer
+            // Reset current timer
             OnWaiting = true;
             DispatcherTimer.Stop();
 
@@ -164,14 +149,29 @@ namespace healthy_reminders
             OnEventMode = !OnEventMode;
             UpdateControls();
 
-            Reset();
+            UpdateCountdownType();
+        }
+
+        // Update countdown timer
+        public void UpdateCountdown()
+        {
+            ControlLabels["Countdown"].Content = CountdownTime.ToString(
+                CountdownTime.Hours >= 1 ? @"hh\:mm\:ss" : @"mm\:ss"
+            );
+        }
+
+        // Update time goal in the countdown based on the type
+        public void UpdateCountdownType()
+        {
+            CountdownTime = OnEventMode ? EventTime : DelayTime;
+            UpdateCountdown();
         }
 
         // Update control buttons based on countdown states
         public void UpdateControls()
         {
             ControlButtons["Play"].IsEnabled = (OnWaiting);
-            ControlButtons["Stop"].IsEnabled = (OnEventMode || !OnWaiting);
+            ControlButtons["Reset"].IsEnabled = (OnEventMode || !OnWaiting);
             ControlButtons["Skip"].IsEnabled = (OnEventMode || !OnWaiting);
 
             string message = "(";

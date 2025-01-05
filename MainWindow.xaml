@@ -55,7 +55,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="BtnEyeCareStop" Content="Stop" Grid.Column="0" Click="BtnEyeCareStop_Click" Width="80" Margin="0,8,0,0"  IsEnabled="False"/>
+                    <Button x:Name="BtnEyeCareReset" Content="Reset" Grid.Column="0" Click="BtnEyeCareReset_Click" Width="80" Margin="0,8,0,0"  IsEnabled="False"/>
                     <Button x:Name="BtnEyeCareSkip" Content="Skip" Grid.Column="2" Click="BtnEyeCareSkip_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
                 </Grid>
                 
@@ -69,7 +69,7 @@
                 <Label x:Name="LabelPostureHealthStatus" Content="(Waiting to start event delay)" FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#FF3A3A3A"/>
 
                 <Button x:Name="BtnPostureHealthPlay" Content="Start" Grid.Column="0" Click="BtnPostureHealthPlay_Click" Width="80"/>
-                <Button x:Name="BtnPostureHealthStop" Content="Stop" Grid.Column="2" Click="BtnPostureHealthStop_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
+                <Button x:Name="BtnPostureHealthReset" Content="Reset" Grid.Column="2" Click="BtnPostureHealthReset_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
             </StackPanel>
 
             <!-- "Physical activity" section -->
@@ -89,7 +89,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="BtnPhysicalActivityStop" Content="Stop" Grid.Column="0" Click="BtnPhysicalActivityStop_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
+                    <Button x:Name="BtnPhysicalActivityReset" Content="Reset" Grid.Column="0" Click="BtnPhysicalActivityReset_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
                     <Button x:Name="BtnPhysicalActivitySkip" Content="Skip" Grid.Column="2" Click="BtnPhysicalActivitySkip_Click" Width="80" Margin="0,8,0,0" IsEnabled="False"/>
                 </Grid>
 

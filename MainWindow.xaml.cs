@@ -49,7 +49,7 @@ namespace healthy_reminders
                     new Dictionary<string, System.Windows.Controls.Button>()
                     {
                         {"Play", BtnEyeCarePlay},
-                        {"Stop", BtnEyeCareStop},
+                        {"Reset", BtnEyeCareReset},
                         {"Skip", BtnEyeCareSkip}
                     }
                 )
@@ -69,7 +69,7 @@ namespace healthy_reminders
                     new Dictionary<string, System.Windows.Controls.Button>()
                     {
                         {"Play", BtnPostureHealthPlay},
-                        {"Stop", BtnPostureHealthStop},
+                        {"Reset", BtnPostureHealthReset},
                         {"Skip", new System.Windows.Controls.Button()}
                     }
                 )
@@ -89,7 +89,7 @@ namespace healthy_reminders
                     new Dictionary<string, System.Windows.Controls.Button>()
                     {
                         {"Play", BtnPhysicalActivityPlay},
-                        {"Stop", BtnPhysicalActivityStop},
+                        {"Reset", BtnPhysicalActivityReset},
                         {"Skip", BtnPhysicalActivitySkip}
                     }
                 )
@@ -128,9 +128,9 @@ namespace healthy_reminders
             EventTimers["EyeCare"].Start();
         }
 
-        private void BtnEyeCareStop_Click(object sender, RoutedEventArgs e)
+        private void BtnEyeCareReset_Click(object sender, RoutedEventArgs e)
         {
-            EventTimers["EyeCare"].Stop();
+            EventTimers["EyeCare"].Reset();
         }
 
         private void BtnEyeCareSkip_Click(object sender, RoutedEventArgs e)
@@ -149,9 +149,9 @@ namespace healthy_reminders
             EventTimers["PostureHealth"].Start();
         }
 
-        private void BtnPostureHealthStop_Click(object sender, RoutedEventArgs e)
+        private void BtnPostureHealthReset_Click(object sender, RoutedEventArgs e)
         {
-            EventTimers["PostureHealth"].Stop();
+            EventTimers["PostureHealth"].Reset();
         }
 
 
@@ -165,9 +165,9 @@ namespace healthy_reminders
             EventTimers["PhysicalActivity"].Start();
         }
 
-        private void BtnPhysicalActivityStop_Click(object sender, RoutedEventArgs e)
+        private void BtnPhysicalActivityReset_Click(object sender, RoutedEventArgs e)
         {
-            EventTimers["PhysicalActivity"].Stop();
+            EventTimers["PhysicalActivity"].Reset();
         }
 
         private void BtnPhysicalActivitySkip_Click(object sender, RoutedEventArgs e)
