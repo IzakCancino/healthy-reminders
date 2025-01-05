@@ -115,6 +115,8 @@ namespace healthy_reminders
                 WindowState = WindowState.Minimized;
                 OnStateChanged(EventArgs.Empty);
             }
+
+            NotificationManager.NotifyIcon.MouseMove += NotifyIcon_MouseMove;
         }
 
 
@@ -196,6 +198,45 @@ namespace healthy_reminders
             {
                 NotificationManager.HideApp();
             }
+        }
+
+        // On hover notify icon in system tray
+        private void NotifyIcon_MouseMove(object sender, EventArgs e)
+        {
+            List<TimeSpan> timers = [];
+
+            // Get all actual countdown value of timers
+            foreach (var (_, eventTimer) in EventTimers)
+            {
+                if (eventTimer.DispatcherTimer.IsEnabled)
+                {
+                    timers.Add(eventTimer.CountdownTime);
+                }
+            }
+
+            // Define a simple readable text for the nearer timer to finish
+            if (timers.Count > 0) {
+                TimeSpan min = timers.Min();
+                string timer = String.Empty;
+                
+                if (min.Hours > 0)
+                {
+                    timer = $"{min.Hours} hr";
+                }
+                else if (min.Minutes > 0)
+                {
+                    timer = $"{min.Minutes} min";
+                }
+                else if (min.Seconds > 0)
+                {
+                    timer = $"{min.Seconds} sec";
+                }
+
+                NotificationManager.NotifyIcon.Text = $"Healthy Reminders ({timer} to end next timer)";
+                return;
+            }
+
+            NotificationManager.NotifyIcon.Text = "Healthy Reminders (no timers running)";
         }
 
         // Executed on main window closed

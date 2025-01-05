@@ -10,14 +10,14 @@ namespace healthy_reminders
     internal class NotificationManager
     {
         private readonly MainWindow _mainWindow;
-        private readonly NotifyIcon _notifyIcon;
+        public NotifyIcon NotifyIcon;
 
         public NotificationManager(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
 
             // Initialize NotifyIcon
-            _notifyIcon = new NotifyIcon
+            NotifyIcon = new NotifyIcon
             {
                 Icon = new System.Drawing.Icon("Assets/icon.ico"),
                 Visible = true,
@@ -25,26 +25,26 @@ namespace healthy_reminders
             };
 
             // Settings for system tray app
-            _notifyIcon.DoubleClick += (s, e) =>
+            NotifyIcon.DoubleClick += (s, e) =>
             {
                 ShowApp();
             };
-            _notifyIcon.BalloonTipClicked += (s, e) =>
+            NotifyIcon.BalloonTipClicked += (s, e) =>
             {
                 ShowApp();
             };
-            _notifyIcon.ContextMenuStrip = new ContextMenuStrip();
-            _notifyIcon.ContextMenuStrip.Items.Add("Show", null, (s, e) => ShowApp());
-            _notifyIcon.ContextMenuStrip.Items.Add("Exit", null, (s, e) => CloseApp());
+            NotifyIcon.ContextMenuStrip = new ContextMenuStrip();
+            NotifyIcon.ContextMenuStrip.Items.Add("Show", null, (s, e) => ShowApp());
+            NotifyIcon.ContextMenuStrip.Items.Add("Exit", null, (s, e) => CloseApp());
         }
 
         // Print a system notification
         public void ShowNotification(string title, string message, int duration = 5000)
         {
-            _notifyIcon.BalloonTipTitle = title;
-            _notifyIcon.BalloonTipText = message;
-            _notifyIcon.BalloonTipIcon = ToolTipIcon.None;
-            _notifyIcon.ShowBalloonTip(duration);
+            NotifyIcon.BalloonTipTitle = title;
+            NotifyIcon.BalloonTipText = message;
+            NotifyIcon.BalloonTipIcon = ToolTipIcon.None;
+            NotifyIcon.ShowBalloonTip(duration);
         }
 
         // Show app's main window and bring it to front
@@ -67,15 +67,14 @@ namespace healthy_reminders
         // Close completely the app
         public void CloseApp()
         {
-            _notifyIcon.Dispose();
+            NotifyIcon.Dispose();
             System.Windows.Application.Current.Shutdown();
         }
 
+        // Update the text showed with the icon in the apps tray
         public void UpdateText(string text)
         {
-            _notifyIcon.Text = text;
-        }
-
-        
+            NotifyIcon.Text = text;
+        }        
     }
 }
