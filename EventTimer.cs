@@ -65,7 +65,7 @@ namespace healthy_reminders
             // Once the countdown reaches 00:00
             if (CountdownTime.Ticks <= 0)
             {
-                Stop();
+                Stop(false);
 
                 if (OnEventMode)
                 {
@@ -137,9 +137,10 @@ namespace healthy_reminders
         }
 
         // Stop timer
-        public void Stop()
+        public void Stop(bool resetEventMode = true)
         {
             OnWaiting = true;
+            OnEventMode = (resetEventMode ? false : OnEventMode);
             UpdateControls();
 
             Reset();
@@ -152,19 +153,26 @@ namespace healthy_reminders
         // Skip timer of event itself
         public void Skip()
         {
+            // Stop current timer
             OnWaiting = true;
-            OnEventMode = false;
+            DispatcherTimer.Stop();
+
+            // Update labels and controls
+            ControlLabels["Countdown"].FontWeight = (OnEventMode ? FontWeights.Normal : FontWeights.Bold);
+            ControlLabels["Countdown"].Foreground = (OnEventMode ? System.Windows.Media.Brushes.Black : System.Windows.Media.Brushes.DarkGreen);
+
+            OnEventMode = !OnEventMode;
             UpdateControls();
 
-            Stop();
+            Reset();
         }
 
         // Update control buttons based on countdown states
         public void UpdateControls()
         {
             ControlButtons["Play"].IsEnabled = (OnWaiting);
-            ControlButtons["Stop"].IsEnabled = (!OnWaiting && !OnEventMode);
-            ControlButtons["Skip"].IsEnabled = (OnEventMode);
+            ControlButtons["Stop"].IsEnabled = (OnEventMode || !OnWaiting);
+            ControlButtons["Skip"].IsEnabled = (OnEventMode || !OnWaiting);
 
             string message = "(";
             message += OnWaiting ? "Waiting to start " : "Running ";
