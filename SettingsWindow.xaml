@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:healthy_reminders"
         mc:Ignorable="d"
-        Title="Settings" Height="350" Width="300" Closed="Window_Closed" WindowStartupLocation="CenterScreen">    
+        Title="Settings" Height="380" Width="350" Closed="Window_Closed" WindowStartupLocation="CenterScreen">    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -24,6 +24,9 @@
                     <RowDefinition Height="27"></RowDefinition>
                     <RowDefinition Height="27"></RowDefinition>
                     <RowDefinition Height="27"></RowDefinition>
+                    <RowDefinition Height="27"></RowDefinition>
+                    <RowDefinition Height="27"></RowDefinition>
+                    <RowDefinition Height="27"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -37,17 +40,26 @@
 
                 <Label Grid.Row="2" Grid.Column="0" Content="&quot;Eye care&quot; event (default 20):" VerticalAlignment="Center" Margin="0,0,5,0"/>
                 <TextBox x:Name="InputEventEyeCare" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="&quot;Posture health&quot; delay (default 1800):" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="InputDelayPostureHealth" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Content="&quot;Physical activity&quot; delay (default 3600):" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="InputDelayPhysicalActivity" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Content="&quot;Physical activity&quot; event (default 300):" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="InputEventPhysicalActivity" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap"  VerticalAlignment="Center"/>
             </Grid>
 
 
         </StackPanel>
 
         <!-- Bottom tools -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="20,0,20,0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Button x:Name="BtnCancel" Content="Cancel" Grid.Column="0" Width="80" VerticalAlignment="Top" Click="BtnCancel_Click"/>
