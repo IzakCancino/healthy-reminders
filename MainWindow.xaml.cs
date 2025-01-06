@@ -188,6 +188,15 @@ namespace healthy_reminders
             settingsWindow.Show();
         }
 
+        // Help button clicked
+        private void BtnHelp_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow(this);
+            helpWindow.Owner = this;
+            this.Hide();
+            helpWindow.Show();
+        }
+
 
 
         // Handle minimize to system tray

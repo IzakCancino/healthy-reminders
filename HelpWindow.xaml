@@ -1,0 +1,33 @@
+﻿<Window x:Class="healthy_reminders.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:healthy_reminders"
+        mc:Ignorable="d"
+        Title="Help" Height="450" Width="800" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Background="#FFEAEAEA">
+    <Grid Margin="10,10,10,10" Background="White">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,10,10,10">
+            <StackPanel CanVerticallyScroll="True">
+                <TextBlock FontSize="16" FontWeight="Bold" Padding="0,0,0,5" HorizontalAlignment="Center">Events</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,0,0,5">Eye care: It is recommended to follow the 20-20-20 rule: every 20 minutes of screen time, look at a static object 20 feet away for 20 seconds.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,0,0,5">Posture health: Maintain good posture while sitting for long periods. Avoid slouching or improper alignment.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,0,0,5">Physical activity: Prolonged sitting can negatively impact your health. Stand up periodically and move your body to stay active.</TextBlock>
+
+                <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Padding="0,15,0,0" Margin="0,0,0,5" HorizontalAlignment="Center">Controls &amp; timers</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Padding="0,0,0,5" Margin="0,0,0,5">Each event has three buttons that enable or disable actions based on the current process:</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="15,0,0,5">Start: Begins the countdown for the current process. Note that countdowns between processes do not start automatically.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="15,0,0,5">Reset: Resets the event to its initial process, restarting its countdown.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="15,0,0,5">Skip: Skips directly to the next process, which will remain paused until manually started.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,10,0,5">There are two processes:</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="15,0,0,5">Event Delay: This uses, by default, a longer countdown, that is black when paused. During this time, you wait for the delay to finish.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="15,0,0,5">Event Time: This uses, by default, a shorter countdown, that is green when paused, and is the active period where you perform the corresponding event activity.</TextBlock>
+
+                <TextBlock TextWrapping="Wrap" FontSize="16" Padding="0,15,0,5" FontWeight="Bold" HorizontalAlignment="Center">Settings</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,0,0,5">The settings allow you to customize the app's behavior and event countdown durations:</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,10,0,5">The first two options let you to automatically start all countdowns when the app launches and to minimize the app to the system tray (Windows taskbar) alongside other background programs.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,0,0,5">The numeric inputs allow you to adjust the countdown duration (in seconds) between processes for each event. Note that the "Posture Health" event does not include an event duration, as it serves solely as a reminder.</TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
